@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <ImageView fx:id="introScreen" fitHeight="600.0" fitWidth="800.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/introscreen.jpg" />
+         </image></ImageView>
+      <Button fx:id="startButton" layoutX="383.0" layoutY="475.0" mnemonicParsing="false" onAction="#handleStart" text="Start" />
+      <Label fx:id="instructionsLabel" layoutX="206.0" layoutY="56.0" prefHeight="146.0" prefWidth="423.0" text="Welcome to Super Smash Bros Ultimate! In this game, you will start off with Mario and will have the ability to unlock different characters and level up different characters and level up your overall experience bar. You will have to fight different opponents to level up and you can choose an opponent from level 1 to 9. However, it is better to start fighting with a lower level until your characters level up more. Once you reach a high enough level and you’re confident enough, you will be able to fight Bowser, the final boss. Good Luck!" visible="false" wrapText="true" />
+      <Button fx:id="beginButton" layoutX="381.0" layoutY="212.0" mnemonicParsing="false" onAction="#handleBegin" text="Begin" visible="false" />
+      <AnchorPane fx:id="lobbyAnchorPane" blendMode="MULTIPLY" prefHeight="600.0" prefWidth="1063.0" visible="false">
+         <children>
+            <ImageView fx:id="marioLobbyImage" fitHeight="162.0" fitWidth="116.0" layoutY="89.0" onMouseClicked="#clickedOnMario" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/marioLobby.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="kirbyLobbyImage" fitHeight="242.0" fitWidth="116.0" layoutX="116.0" layoutY="89.0" onMouseClicked="#clickedOnKirby" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/characterLocked.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="yoshiLobbyImage" fitHeight="242.0" fitWidth="116.0" layoutX="232.0" layoutY="89.0" onMouseClicked="#clickedOnYoshi" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/characterLocked.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="peachLobbyImage" fitHeight="242.0" fitWidth="116.0" layoutY="251.0" onMouseClicked="#clickedOnPeach" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/characterLocked.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="linkLobbyImage" fitHeight="242.0" fitWidth="116.0" layoutX="116.0" layoutY="251.0" onMouseClicked="#clickedOnLink" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/characterLocked.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pikachuLobbyImage" fitHeight="242.0" fitWidth="116.0" layoutX="232.0" layoutY="251.0" onMouseClicked="#clickedOnPikachu" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/characterLocked.PNG" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8fc7fc" height="367.0" layoutX="440.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" width="363.0" />
+            <Label fx:id="selectedCharacterLabel" layoutX="73.0" layoutY="427.0" prefHeight="17.0" prefWidth="232.0" text="Selected Character:                    Mario">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="selectedCharacterImage" fitHeight="108.0" fitWidth="108.0" layoutX="227.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/marioFace.jpg" />
+               </image>
+            </ImageView>
+            <ProgressBar fx:id="overallProgressBar" blendMode="GREEN" layoutX="500.0" layoutY="539.0" prefHeight="25.0" prefWidth="268.0" progress="0.0" style="-fx-background-color: white;" />
+            <Label fx:id="progressBarNumberLabel" layoutX="500.0" layoutY="522.0" prefHeight="17.0" prefWidth="268.0" text="0                                                                            1" />
+            <Slider fx:id="enemyDifficultySlider" blockIncrement="1.0" layoutX="478.0" layoutY="281.0" majorTickUnit="1.0" max="9.0" min="1.0" minorTickCount="0" onDragDetected="#changeEnemyDifficulty" onMouseClicked="#changeEnemyDifficulty" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0" />
+            <Label layoutX="459.0" layoutY="251.0" prefHeight="38.0" prefWidth="192.0" text="Select the difficulty of your enemy (The more difficult, the more xp points you will recieve if you win):" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Label>
+            <Label layoutX="76.0" layoutY="46.0" prefHeight="30.0" prefWidth="214.0" text="Select Your Character" textAlignment="CENTER" textFill="#1500ff">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="584.0" layoutY="564.0" prefHeight="17.0" prefWidth="122.0" text="Overall Level/XP">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Button layoutX="692.0" layoutY="296.0" mnemonicParsing="false" onAction="#goToMapScreen" text="Battle" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffff99" height="148.0" layoutX="440.0" layoutY="363.0" stroke="BLACK" strokeType="INSIDE" width="363.0" />
+            <Label layoutX="448.0" layoutY="6.0" prefHeight="17.0" prefWidth="184.0" text="Upcoming">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="enemyLobbyImage" fitHeight="108.0" fitWidth="108.0" layoutX="642.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="enemyLobbyName" layoutX="462.0" layoutY="49.0" prefHeight="25.0" prefWidth="156.0" text="Enemy: Donkey Kong">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="enemySpecialAbilitiesLabel" layoutX="458.0" layoutY="86.0" prefHeight="98.0" prefWidth="148.0" text="Special Abilities: " wrapText="true">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
+            <Label fx:id="enemyRecordLabel" layoutX="462.0" layoutY="214.0" prefHeight="17.0" prefWidth="140.0" text="Record against this enemy: 0 - 0">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
+            <Label fx:id="reco" layoutX="448.0" layoutY="363.0" prefHeight="17.0" prefWidth="184.0" text="Results">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="recommendedDifficultyLabel" layoutX="471.0" layoutY="321.0" prefHeight="17.0" prefWidth="156.0" text="Recommended Difficulty Based On Level: 1" textFill="RED">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Label>
+            <Label fx:id="characterSpecialAbilitiesLabel" layoutX="33.0" layoutY="450.0" prefHeight="110.0" prefWidth="161.0" text="Label" wrapText="true" />
+            <Button fx:id="upgradeButton" layoutX="103.0" layoutY="559.0" mnemonicParsing="false" onAction="#handleUpgrade" text="Upgrade" visible="false" />
+            <Label fx:id="resultsLabel" layoutX="446.0" layoutY="399.0" prefHeight="74.0" prefWidth="257.0" />
+            <Button layoutX="689.0" layoutY="415.0" mnemonicParsing="false" onAction="#handleViewStats" text="View More Stats" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="characterUnlockedScreen" prefHeight="600.0" prefWidth="1063.0" visible="false">
+         <children>
+            <ImageView fx:id="newCharacterImage" fitHeight="291.0" fitWidth="303.0" layoutX="249.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="154.0" layoutY="42.0" prefHeight="50.0" prefWidth="493.0" text="You unlocked a new character!" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="34.0" />
+               </font>
+            </Label>
+            <Label fx:id="newCharacterLabel" layoutX="356.0" layoutY="111.0" prefHeight="32.0" prefWidth="108.0" text="Mario" textAlignment="CENTER" textFill="#18da5f">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Button fx:id="continueNewCharacterButton" layoutX="368.0" layoutY="479.0" mnemonicParsing="false" onAction="#handleContinueNewCharacter" text="Continue" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="chooseMapScreen" prefHeight="600.0" prefWidth="1063.0" visible="false">
+         <children>
+            <Label layoutX="401.0" layoutY="89.0" prefHeight="64.0" prefWidth="223.0" text="Select the map you would like to fight on" />
+            <ListView fx:id="mapsListView" layoutX="412.0" layoutY="153.0" onMouseClicked="#selectMap" prefHeight="200.0" prefWidth="200.0" />
+            <Label fx:id="mapLabel" layoutX="624.0" layoutY="221.0" prefHeight="32.0" prefWidth="167.0" text="Map: " />
+            <Button layoutX="386.0" layoutY="451.0" mnemonicParsing="false" onAction="#startBattle" text="Start" />
+            <ImageView fx:id="playerMapScreenImage" fitHeight="148.0" fitWidth="148.0" layoutX="118.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="178.0" layoutY="229.0" text="VS">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="enemyMapScreenImage" fitHeight="148.0" fitWidth="148.0" layoutX="118.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="battleScene" layoutX="2.0" prefHeight="600.0" prefWidth="1055.0" visible="false">
+         <children>
+            <ImageView fx:id="battleMapImage" fitHeight="600.0" fitWidth="1061.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/townAndCityMap.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="characterBattleImage" fitHeight="218.0" fitWidth="174.0" layoutX="172.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" y="20.0">
+               <image>
+                  <Image url="@../Resources/linkMain.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="enemyBattleImage" fitHeight="218.0" fitWidth="174.0" layoutX="686.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true" y="20.0">
+               <image>
+                  <Image url="@../Resources/ikeMain.png" />
+               </image>
+            </ImageView>
+            <ProgressBar fx:id="characterBattleProgressBar" layoutX="62.0" layoutY="24.0" prefHeight="19.0" prefWidth="272.0" progress="0.0" style="-fx-background-color: white;">
+               <effect>
+                  <ColorAdjust contrast="0.12" />
+               </effect>
+            </ProgressBar>
+            <ProgressBar fx:id="enemyBattleProgressBar" layoutX="745.0" layoutY="24.0" prefHeight="19.0" prefWidth="272.0" progress="0.0" style="-fx-background-color: white;">
+               <effect>
+                  <ColorAdjust contrast="0.12" />
+               </effect>
+            </ProgressBar>
+            <Label fx:id="progressBarNameLabel1" layoutX="62.0" layoutY="1.0" prefHeight="27.0" prefWidth="232.0" text="Mario" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Label>
+            <Label fx:id="progressBarNameLabel2" layoutX="744.0" layoutY="-1.0" prefHeight="27.0" prefWidth="232.0" text="Donkey Kong" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="characterHealthLabel" layoutX="119.0" layoutY="48.0" prefHeight="27.0" prefWidth="182.0" text="Health: 500/500" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="enemyHealthLabel" layoutX="814.0" layoutY="47.0" prefHeight="27.0" prefWidth="161.0" text="Health: 500/500" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="150.0" layoutX="228.0" layoutY="446.0" stroke="BLACK" strokeType="INSIDE" width="586.0" />
+            <Button fx:id="blockHitButton" layoutX="264.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleBlockHit" text="Block Hit" />
+            <Button fx:id="jumpHitButton" layoutX="361.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleJumpHit" text="Jump Hit" />
+            <Button fx:id="upgradeDefenseButton" layoutX="341.0" layoutY="525.0" mnemonicParsing="false" onAction="#handleUpgradeDefense" text="Upgrade Defense" />
+            <Button fx:id="classicStrikeButton" layoutX="266.0" layoutY="490.0" mnemonicParsing="false" onAction="#handleClassicStrike" text="Classic Strike" />
+            <Button fx:id="computerTurnButton" layoutX="665.0" layoutY="506.0" mnemonicParsing="false" onAction="#doComputerTurn" text="Computer Turn" />
+            <Label fx:id="computerMoveLabel" layoutX="644.0" layoutY="489.0" prefHeight="48.0" prefWidth="161.0" text="Computer Last Move: Classic Strike" wrapText="true" />
+            <Label fx:id="characterDefensiveRatingLabel" layoutX="265.0" layoutY="564.0" prefHeight="17.0" prefWidth="161.0" text="Defensive Rating: " />
+            <Label fx:id="enemyDefensiveRatingLabel" layoutX="641.0" layoutY="564.0" prefHeight="17.0" prefWidth="161.0" text="Defensive Rating: " />
+            <Label fx:id="chooseYourMoveLabel" layoutX="270.0" layoutY="457.0" text="Choose Your Move:" />
+            <Line endX="33.66668701171875" endY="-10.333343505859375" layoutX="540.0" layoutY="456.0" startX="33.66668701171875" startY="139.0" />
+            <Button fx:id="specialAbilityButton" layoutX="492.0" layoutY="488.0" mnemonicParsing="false" onAction="#handleSpecialAbility" prefHeight="61.0" prefWidth="64.0" style="-fx-background-color: red;" text="Special Ability" textAlignment="CENTER" textFill="#fcfcfc" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Label fx:id="specialAbilityLabel" layoutX="500.0" layoutY="554.0" prefHeight="17.0" prefWidth="87.0" text="()" textAlignment="CENTER" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="gameEndScreen" prefHeight="600.0" prefWidth="1061.0" visible="false">
+         <children>
+            <Label fx:id="endResultLabel" layoutX="464.0" layoutY="86.0" prefHeight="81.0" prefWidth="217.0" text="You Won!" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="34.0" />
+               </font>
+            </Label>
+            <Button fx:id="continueFromResultButton" layoutX="512.0" layoutY="201.0" mnemonicParsing="false" onAction="#exitGameEndScreen" text="Continue" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="statsScreen" prefHeight="601.0" prefWidth="1151.0" visible="false">
+         <children>
+            <Button layoutX="621.0" layoutY="461.0" mnemonicParsing="false" onAction="#backToLobbyScreen" text="Back" />
+            <Label fx:id="totalWinsLossLabel" layoutX="266.0" layoutY="102.0" prefHeight="17.0" prefWidth="265.0" text="Label" />
+            <Label fx:id="additionalStatsLabel" layoutX="271.0" layoutY="150.0" prefHeight="166.0" prefWidth="431.0" text="Map most played on: ()  Most games against enemy: Most wins against enemy:" wrapText="true" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
